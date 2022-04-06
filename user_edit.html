@@ -6,26 +6,27 @@
 </head>
 <body>
 
-<h1>ユーザー登録</h1>
+<h1>ユーザー編集</h1>
 <div>
-  <p><strong>名前</strong></p><input type="text">
+  <p><strong>名前</strong></p>
+  <input type="text" value="松﨑多聞">
 </div>
 <div>
   <p><strong>性別</strong></p>
-  <input type="radio" name="num_of_inq" value="男">男
+  <input type="radio" name="num_of_inq" value="男" checked>男
   <input type="radio" name="num_of_inq" value="女">女
 </div>
 <div>
-  <p><strong>生年月日</strong></p><input type="date" name="birthday">
+  <p><strong>生年月日</strong></p><input type="date" value="1998-09-09">
 </div>
 <div>
-  <p><strong>パスワード</strong></p><input type="password">
+  <p><strong>パスワード</strong></p><input type="password" value="12345678">
 </div>
 <div>
-  <p><strong>メールアドレス</strong></p><input type="text">
+  <p><strong>メールアドレス</strong></p><input type="text" value="t.matsuzaki@offgrid.co.jp">
 </div>
 <div>
-  <p><strong>郵便番号</strong></p><input type="text">
+  <p><strong>郵便番号</strong></p><input type="text" value="270-0163">
 </div>
 <div>
 <p><strong>都道府県</strong></p>
@@ -42,7 +43,7 @@
   <option value="prefecture">栃木県</option>
   <option value="prefecture">群馬県</option>
   <option value="prefecture">埼玉県</option>
-  <option value="prefecture">千葉県</option>
+  <option value="prefecture" selected>千葉県</option>
   <option value="prefecture">東京都</option>
   <option value="prefecture">神奈川県</option>
   <option value="prefecture">新潟県</option>
@@ -80,15 +81,16 @@
   <option value="prefecture">沖縄県</option>
 </select>
 </div>
-<p><strong>住所</strong></p><input type="text">
+<div>
+  <p><strong>住所</strong></p><input type="text" value="流山市南流山3-3-10">
+</div>
 <div>
   <p><strong>スキル</strong></p>
-  <input type="checkbox">基本情報
+  <input type="checkbox" checked>基本情報
   <input type="checkbox">応用情報
   <br>
   <input type="checkbox">データベーススペシャリスト
   <input type="checkbox">ネットワークスペシャリスト
 </div>
-<button type="button">登録</button>
 
 </body>
