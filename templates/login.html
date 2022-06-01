@@ -1,0 +1,32 @@
+<!-- <!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>html研修</title>
+</head> -->
+{%- extends "layout.html" %}
+{%- block content %}
+  <body>
+  <form action="/login" method="POST">
+    <form name="login_form" action="dashboard.html">
+      <div class="login_form_top">
+        <h1>ログイン</h1>
+        <p>
+          ユーザーID(メールアドレス)、パスワードを入力し、ログインボタンをクリックしてください。
+        </p>
+      </div>
+      <div class="login_form_btm">
+        <input type="id" name="mail" placeholder="ユーザーID(メールアドレス)を入力してください">
+        {% with errors = get_flashed_messages(category_filter=["ng_mail"]) %}
+        {% if errors %}{{ errors[0] }}{% endif %}
+        {% endwith %}<br>
+        
+        <input type="password" name="password" placeholder="パスワードを入力してください">
+        {% with errors = get_flashed_messages(category_filter=["ng_pass"]) %}
+        {% if errors %}{{ errors[0] }}{% endif %}
+        {% endwith %}<br>
+      </div>
+      <button type="submit">ログイン</button>
+    </form>
+  </body>
+{%- endblock %}

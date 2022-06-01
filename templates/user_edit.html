@@ -1,0 +1,87 @@
+<!-- <!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>html研修</title>
+</head> -->
+{%- extends "layout.html" %}
+{%- block content %}
+  <body>
+    
+  <h1>ユーザー編集</h1>
+
+  <!-- postメソッドの時はformタグで囲み、URLをここに書く！ -->
+  <form action="/update/{{user['user_id']}}" method="POST">
+    <div>
+      <p><strong>名前</strong></p>
+      {% with errors = get_flashed_messages(category_filter=["ng_name"]) %}
+      {% if errors %}{{ errors[0] }}{% endif %}
+      {% endwith %}<br>
+    <input type="text" name="name" value="{{user['name']}}">
+  </div>
+  <div>
+    <p><strong>性別</strong></p> <!--valueの所に変数を組み込む-->
+    {% with errors = get_flashed_messages(category_filter=["ng_gender"]) %}
+    {% if errors %}{{ errors[0] }}{% endif %}
+    {% endwith %}<br>
+    <input type="radio" name="num_of_inq" value={{user['gender']}} {% if user['gender'] == "1" %}checked {% endif %}>男
+    <input type="radio" name="num_of_inq" value={{user['gender']}} {% if user['gender'] == "2" %}checked {% endif %}>女
+  </div>
+  <div>
+    <!-- <p><strong>生年月日</strong></p><input type="date" value=""> -->
+  </div>
+  <div>
+    <p><strong>パスワード</strong></p>
+    {% with errors = get_flashed_messages(category_filter=["ng_pass"]) %}
+    {% if errors %}{{ errors[0] }}{% endif %}
+    {% endwith %}<br>
+    <input type="password" name="password" value="{{user['password']}}">
+  </div>
+  <div>
+    <p><strong>メールアドレス</strong></p>
+    {% with errors = get_flashed_messages(category_filter=["ng_mail"]) %}
+    {% if errors %}{{ errors[0] }}{% endif %}
+    {% endwith %}<br>
+    <input type="text" name="mail" value="{{user['mail']}}">
+  </div>
+  <div>
+    <p><strong>郵便番号</strong></p>
+    {% with errors = get_flashed_messages(category_filter=["ng_yubin"]) %}
+    {% if errors %}{{ errors[0] }}{% endif %}
+    {% endwith %}<br>
+    <input type="text" name="yubin" value="{{user['yubin']}}">
+  </div>
+  <div>
+    <p><strong>都道府県</strong></p> <!--forで回す。shikakuも-->
+    {% with errors = get_flashed_messages(category_filter=["ng_pre"]) %}
+    {% if errors %}{{ errors[0] }}{% endif %}
+    {% endwith %}<br>
+    <select name="prefecture">
+      {% for todoufuken in todoufuken_list %} 
+      <option value="{{ todoufuken['ken_code'] }}" {% if todoufuken['ken_code'] == user['ken_code'] %} selected {% endif %}>{{ todoufuken['ken_name'] }}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+  <div>
+    <p><strong>住所</strong></p>
+    {% with errors = get_flashed_messages(category_filter=["ng_jyu"]) %}
+    {% if errors %}{{ errors[0] }}{% endif %}
+    {% endwith %}<br>
+    <input type="text" name="adress" value="{{user['jyusyo']}}">
+  </div>
+  <div>
+    <p><strong>スキル</strong></p>  <!-- shikaku_listとnew_shikaku_listを使い分ける -->
+    {% for shikaku in shikaku_list %}
+    <input type="checkbox" name="skill"
+    value="{{ shikaku['shikaku_code'] }}" {% if shikaku['shikaku_code'] in new_shikaku_list %} checked {% endif %}>{{ shikaku['shikaku_name'] }}
+    {% endfor %}
+  </div>
+  <br>
+  <div> <!--更新ボタンは/updateを伝い、最終的に一覧につなげる-->
+    <input type="submit" value="更新">
+  </div>
+  </form>
+
+  </body>
+{%- endblock %}

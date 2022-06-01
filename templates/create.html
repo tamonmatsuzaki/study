@@ -1,0 +1,127 @@
+<!-- <!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>html研修</title>
+</head> -->
+{%- extends "layout.html" %}
+{%- block content %}
+  <body>
+    <form action="/regist" method="POST">
+      <h1>ユーザー登録</h1>
+  <div>
+    <p><strong>名前</strong></p>
+    {% with errors = get_flashed_messages(category_filter=["ng_name"]) %}
+    {% if errors %}{{ errors[0] }}{% endif %}
+    {% endwith %}<br>
+    <input type="text" name="name" value="">
+  </div>
+  <div>
+    <p><strong>性別</strong></p>
+    {% with errors = get_flashed_messages(category_filter=["ng_gender"]) %}
+    {% if errors %}{{ errors[0] }}{% endif %}
+    {% endwith %}<br>
+    <input type="radio" name="gender" value="1">男
+    <input type="radio" name="gender" value="2">女
+  </div>
+  <div>
+    <p><strong>パスワード</strong></p>
+    {% with errors = get_flashed_messages(category_filter=["ng_pass"]) %}
+    {% if errors %}{{ errors[0] }}{% endif %}
+    {% endwith %}<br>
+    <input type="password" name="password">
+  </div>
+  <div>
+    <p><strong>メールアドレス</strong></p>
+    {% with errors = get_flashed_messages(category_filter=["ng_mail"]) %}
+    {% if errors %}{{ errors[0] }}{% endif %}
+    {% endwith %}<br>
+    <input type="text" name="mail">
+  </div>
+  <div>
+    <p><strong>郵便番号</strong></p>
+    {% with errors = get_flashed_messages(category_filter=["ng_yubin"]) %}
+    {% if errors %}{{ errors[0] }}{% endif %}
+    {% endwith %}<br>
+    <input type="text" name="yubin" value="">
+  </div>
+  <div>
+    <p><strong>都道府県</strong></p>
+    {% with errors = get_flashed_messages(category_filter=["ng_pre"]) %}
+    {% if errors %}{{ errors[0] }}{% endif %}
+    {% endwith %}<br>
+  <select name="prefecture">
+    <option value="">都道府県</option>
+    {% for todoufuken in todoufuken_list %}
+    <option value="{{todoufuken['ken_code']}}">{{todoufuken['ken_name']}}</option>
+    {% endfor %}
+    <!-- <option value="prefecture">都道府県</option>
+      <option value="prefecture">北海道</option>
+      <option value="prefecture">青森県</option>
+      <option value="prefecture">岩手県</option>
+      <option value="prefecture">宮城県</option>
+      <option value="prefecture">秋田県</option>
+      <option value="prefecture">山形県</option>
+      <option value="prefecture">福島県</option>
+      <option value="prefecture">茨城県</option>
+      <option value="prefecture">栃木県</option>
+      <option value="prefecture">群馬県</option>
+      <option value="prefecture">埼玉県</option>
+    <option value="prefecture">千葉県</option>
+    <option value="prefecture">東京都</option>
+    <option value="prefecture">神奈川県</option>
+    <option value="prefecture">新潟県</option>
+    <option value="prefecture">富山県</option>
+    <option value="prefecture">石川県</option>
+    <option value="prefecture">福井県</option>
+    <option value="prefecture">山梨県</option>
+    <option value="prefecture">長野県</option>
+    <option value="prefecture">岐阜県</option>
+    <option value="prefecture">静岡県</option>
+    <option value="prefecture">愛知県</option>
+    <option value="prefecture">三重県</option>
+    <option value="prefecture">滋賀県</option>
+    <option value="prefecture">京都府</option>
+    <option value="prefecture">大阪府</option>
+    <option value="prefecture">兵庫県</option>
+    <option value="prefecture">奈良県</option>
+    <option value="prefecture">和歌山県</option>
+    <option value="prefecture">鳥取県</option>
+    <option value="prefecture">島根県</option>
+    <option value="prefecture">岡山県</option>
+    <option value="prefecture">広島県</option>
+    <option value="prefecture">山口県</option>
+    <option value="prefecture">徳島県</option>
+    <option value="prefecture">香川県</option>
+    <option value="prefecture">愛媛県</option>
+    <option value="prefecture">高知県</option>
+    <option value="prefecture">福岡県</option>
+    <option value="prefecture">佐賀県</option>
+    <option value="prefecture">長崎県</option>
+    <option value="prefecture">熊本県</option>
+    <option value="prefecture">大分県</option>
+    <option value="prefecture">宮崎県</option>
+    <option value="prefecture">鹿児島県</option>
+    <option value="prefecture">沖縄県</option> -->
+  </select>
+  </div>
+  <p><strong>住所</strong></p>
+  {% with errors = get_flashed_messages(category_filter=["ng_jyu"]) %}
+  {% if errors %}{{ errors[0] }}{% endif %}
+  {% endwith %}<br>
+  <input type="text" name="adress" value="">
+  <div>
+    <p><strong>スキル</strong></p>
+    {% for shikaku in shikaku_list %}
+    <input type="checkbox" name="shikaku_code" value="{{shikaku['shikaku_code']}}">{{shikaku["shikaku_name"]}}
+    {% endfor %}
+    <!-- <input type="checkbox">基本情報
+      <input type="checkbox">応用情報
+      <input type="checkbox">データベーススペシャリスト
+      <input type="checkbox">ネットワークスペシャリスト -->
+    </div>
+    <button type="submit">登録</button>
+  </form>
+{%- endblock %}
+
+</body>

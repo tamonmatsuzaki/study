@@ -1,0 +1,47 @@
+<!-- <!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>html研修</title>
+</head> -->
+{%- extends "layout.html" %}
+{%- block content %}
+  <body>
+    
+  <h1>ユーザー一覧</h1>
+  <button type="button" onclick="location.href='/create'">
+    新規登録
+  </button>
+  <div>
+    <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>名前</th>
+      <th>資格</th>
+      <th></th>
+    </tr>
+    {% for user in user_list %}
+    <tr>
+      <td>{{ user["user_id"] }}</td>
+      <td>{{ user["name"] }}</td>
+      <td>{{ user["shikaku_name"] }}</td>
+      <td>
+        <button type="button" onclick="location.href=`/user_detail/{{ user['user_id'] }}`">
+          詳細
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+    
+  </table>
+  </div>
+
+  </body>
+{%- endblock %}
+
+
+
+
+
+
+    
